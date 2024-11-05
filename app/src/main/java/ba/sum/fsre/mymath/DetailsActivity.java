@@ -3,6 +3,7 @@ package ba.sum.fsre.mymath;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +34,13 @@ public class DetailsActivity extends AppCompatActivity {
         EditText telephoneTxt = findViewById(R.id.telephoneTxt);
 
         Button saveProfileBtn = findViewById(R.id.saveProfileBtn);
+
+        Button openLessonsBtn = findViewById(R.id.openLessonsBtn);
+
+        openLessonsBtn.setOnClickListener(view -> {
+            Intent i = new Intent(DetailsActivity.this, ListViewActivity.class);
+            startActivity(i);
+        });
 
         String uid = mAuth.getCurrentUser().getUid();
 

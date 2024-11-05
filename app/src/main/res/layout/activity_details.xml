@@ -53,5 +53,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Spasi podatke" />
+
+        <Button
+            android:id="@+id/openLessonsBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Otvori lekcije" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

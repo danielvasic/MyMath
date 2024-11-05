@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MyMath"
         tools:targetApi="31">
         <activity
+            android:name=".ListViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailsActivity"
             android:exported="false" />
         <activity
