@@ -1,74 +1,66 @@
 package ba.sum.fsre.mymath;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import ba.sum.fsre.mymath.fragments.DetailsFragment;
+import ba.sum.fsre.mymath.fragments.ListViewFragment;
 import ba.sum.fsre.mymath.models.User;
 
 public class DetailsActivity extends AppCompatActivity {
-    FirebaseFirestore db;
 
-    FirebaseAuth mAuth;
+    public DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
-        this.db = FirebaseFirestore.getInstance();
+        setContentView(R.layout.details_activity);
 
-        this.mAuth = FirebaseAuth.getInstance();
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        EditText firstNameTxt = findViewById(R.id.firstNameTxt);
-        EditText lastNameTxt = findViewById(R.id.lastNameTxt);
-        EditText dateOfBirthTxt = findViewById(R.id.dateOfBirthTxt);
-        EditText telephoneTxt = findViewById(R.id.telephoneTxt);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DetailsFragment()).commit();
 
-        Button saveProfileBtn = findViewById(R.id.saveProfileBtn);
+        this.drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.navigation_view);
 
-        Button openLessonsBtn = findViewById(R.id.openLessonsBtn);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
-        openLessonsBtn.setOnClickListener(view -> {
-            Intent i = new Intent(DetailsActivity.this, ListViewActivity.class);
-            startActivity(i);
-        });
-
-        String uid = mAuth.getCurrentUser().getUid();
-
-        this.db.collection("users").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                DocumentSnapshot document = task.getResult();
-                if (document.exists()){
-                    User user = document.toObject(User.class);
-                    firstNameTxt.setText(user.getFirstName());
-                    lastNameTxt.setText(user.getLastName());
-                    dateOfBirthTxt.setText(user.getDateOfBirth());
-                    telephoneTxt.setText(user.getTelephone());
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment selectedFragment = null;
+                if (item.getItemId() == R.id.nav_lekcije) {
+                    selectedFragment = new ListViewFragment();
+                } else if (item.getItemId() == R.id.nav_profil) {
+                    selectedFragment = new DetailsFragment();
                 }
+                assert selectedFragment != null;
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                drawerLayout.closeDrawers();
+                return false;
             }
         });
 
 
-        saveProfileBtn.setOnClickListener(view -> {
-            String firstName = firstNameTxt.getText().toString();
-            String lastName = lastNameTxt.getText().toString();
-            String dateOfBirth = dateOfBirthTxt.getText().toString();
-            String telephone = telephoneTxt.getText().toString();
-
-            User newUser = new User(firstName, lastName, dateOfBirth, telephone);
-
-            db.collection("users").document(uid).set(newUser);
-        });
 
 
     }

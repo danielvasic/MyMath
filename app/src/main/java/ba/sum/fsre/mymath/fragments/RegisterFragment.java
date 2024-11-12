@@ -1,33 +1,39 @@
-package ba.sum.fsre.mymath;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package ba.sum.fsre.mymath.fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class RegisterActivity extends AppCompatActivity {
-    FirebaseAuth mAuth;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+import ba.sum.fsre.mymath.R;
 
+public class RegisterFragment extends Fragment {
+
+    FirebaseAuth mAuth;
+
+    public RegisterFragment() {
+        super();
+    }
+
+    public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        View v = inflater.inflate(R.layout.fragment_register, container, false);
         this.mAuth = FirebaseAuth.getInstance();
 
-        EditText registerEmailTxt = findViewById(R.id.registerEmailTxt);
-        EditText registerPasswordTxt = findViewById(R.id.registerPasswordTxt);
-        EditText registerPasswordConfirmTxt = findViewById(R.id.registerConfirmPasswordTxt);
-
-        Button registerBtn = findViewById(R.id.registerNewBtn);
+        EditText registerEmailTxt = v.findViewById(R.id.registerEmailTxt);
+        EditText registerPasswordTxt = v.findViewById(R.id.registerPasswordTxt);
+        EditText registerPasswordConfirmTxt = v.findViewById(R.id.registerConfirmPasswordTxt);
+        Button registerBtn = v.findViewById(R.id.registerNewBtn);
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,17 +48,18 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 // Registration successful
-                                Toast.makeText(getApplicationContext(), "Registration successful", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(v.getContext(), "Registration successful", Toast.LENGTH_SHORT).show();
                             } else {
                                 // Registration failed
-                                Toast.makeText(getApplicationContext(), "Registration failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(v.getContext(), "Registration failed", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
                 } else {
-                    Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v.getContext(), "Passwords do not match", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+        return v;
     }
 }
