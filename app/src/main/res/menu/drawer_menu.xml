@@ -6,9 +6,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="Profil" />
+
     <item
         android:id="@+id/nav_lekcije"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="Lekcije" />
+
+    <item
+        android:id="@+id/nav_igrica"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Igrica 1" />
 </menu>

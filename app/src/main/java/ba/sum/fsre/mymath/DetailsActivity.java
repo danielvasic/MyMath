@@ -52,6 +52,9 @@ public class DetailsActivity extends AppCompatActivity {
                     selectedFragment = new ListViewFragment();
                 } else if (item.getItemId() == R.id.nav_profil) {
                     selectedFragment = new DetailsFragment();
+                } else if (item.getItemId() == R.id.nav_igrica) {
+                    startActivity(new Intent(DetailsActivity.this, GameOneActivity.class));
+                    finish();
                 }
                 assert selectedFragment != null;
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
