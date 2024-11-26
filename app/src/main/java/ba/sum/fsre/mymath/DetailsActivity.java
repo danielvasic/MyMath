@@ -10,19 +10,13 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.EditText;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import ba.sum.fsre.mymath.fragments.DetailsFragment;
+import ba.sum.fsre.mymath.fragments.GameOneFragment;
+import ba.sum.fsre.mymath.fragments.LeaderboardFragment;
 import ba.sum.fsre.mymath.fragments.ListViewFragment;
-import ba.sum.fsre.mymath.models.User;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -53,8 +47,9 @@ public class DetailsActivity extends AppCompatActivity {
                 } else if (item.getItemId() == R.id.nav_profil) {
                     selectedFragment = new DetailsFragment();
                 } else if (item.getItemId() == R.id.nav_igrica) {
-                    startActivity(new Intent(DetailsActivity.this, GameOneActivity.class));
-                    finish();
+                    selectedFragment = new GameOneFragment();
+                } else if (item.getItemId() == R.id.nav_leaderboard) {
+                    selectedFragment = new LeaderboardFragment();
                 }
                 assert selectedFragment != null;
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();

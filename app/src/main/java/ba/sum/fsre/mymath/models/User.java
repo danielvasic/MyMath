@@ -8,13 +8,20 @@ public class User {
     private String telephone;
     private String dateOfBirth;
 
+    private Integer points;
+
     public User() {}
 
-    public User(String firstName, String lastName, String telephone, String dateOfBirth) {
+    public User(String firstName, String lastName, String telephone, String dateOfBirth, Integer points) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.telephone = telephone;
         this.dateOfBirth = dateOfBirth;
+        this.points = points;
+    }
+
+    public String getUsername() {
+        return this.firstName + " " + this.lastName;
     }
     @PropertyName("firstName")
     public String getFirstName() {
@@ -53,5 +60,15 @@ public class User {
     @PropertyName("dateOfBirth")
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    @PropertyName("points")
+    public Integer getPoints() {
+        return points;
+    }
+
+    @PropertyName("points")
+    public void setPoints(Integer points) {
+        this.points = points;
     }
 }

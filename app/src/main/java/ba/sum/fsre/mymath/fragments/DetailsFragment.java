@@ -64,7 +64,7 @@ public class DetailsFragment extends Fragment {
             String lastName = lastNameTxt.getText().toString();
             String dateOfBirth = dateOfBirthTxt.getText().toString();
             String telephone = telephoneTxt.getText().toString();
-            User newUser = new User(firstName, lastName, dateOfBirth, telephone);
+            User newUser = new User(firstName, lastName, dateOfBirth, telephone, 0);
             db.collection("users").document(uid).set(newUser);
         });
         return v;

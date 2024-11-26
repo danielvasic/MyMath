@@ -16,7 +16,7 @@
         android:theme="@style/Theme.MyMath"
         tools:targetApi="31">
         <activity
-            android:name=".GameOneActivity"
+            android:name=".fragments.GameOneFragment"
             android:exported="false" />
         <activity
             android:name=".DetailsActivity"

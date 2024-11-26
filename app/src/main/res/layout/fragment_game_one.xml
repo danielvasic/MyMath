@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameOneActivity">
+    android:layout_margin="30dp"
+    tools:context=".fragments.GameOneFragment">
 
     <View
         android:id="@+id/shadowOverlay"
@@ -65,5 +66,16 @@
             android:layout_height="wrap_content"
             android:text="Pokreni ponovo" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/userPointsTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAlignment="textStart"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
