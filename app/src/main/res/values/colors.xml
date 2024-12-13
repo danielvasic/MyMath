@@ -9,4 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FFFF0000</color>
     <color name="green">#FF00FF00</color>
+    <color name="primaryColor">#2196F3</color> <!-- Plava -->
+    <color name="secondaryColor">#FF9800</color> <!-- Narandžasta -->
+    <color name="tertiaryColor">#4CAF50</color> <!-- Zelena -->
+    <color name="outlineColor">#BDBDBD</color> <!-- Siva za obrube -->
+    <color name="editTextBackground">#FFFFFF</color> <!-- Bijela pozadina za unos -->
 </resources>
