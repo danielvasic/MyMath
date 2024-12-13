@@ -36,7 +36,7 @@ public class DetailsFragment extends Fragment {
     private Uri selectedImageUri;
 
     // MinIO Configuration
-    private static final String MINIO_ENDPOINT = "http://161.53.172.5:9000";
+    private static final String MINIO_ENDPOINT = "https://io.sum.ba";
     private static final String MINIO_ACCESS_KEY = "dvasic";
     private static final String MINIO_SECRET_KEY = "ES#MoSt4R.";
     private static final String BUCKET_NAME = "uploads";
